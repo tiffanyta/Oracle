@@ -2,15 +2,11 @@
 import processing.video.*;
 Movie waterMov;
 Movie thunderMov;
+Movie earthMov;
+Movie heavenMov;
+Movie mountainMov;
 
 
-
-//load trigram iamges
-PImage heavenImg;
-PImage earthImg;
-PImage waterImg;
-PImage mountainImg;
-PImage thunderImg;
 
 Hexagram[] hex;
 int randNum = int(random(1, 7));
@@ -19,35 +15,30 @@ void setup() {
   size(1200, 700);
   background(0);
 
-//load movie
+  //load movie
   waterMov = new Movie(this, "water.mov");
-  waterMov.loop();
   thunderMov = new Movie(this, "thunder.mov");
-  thunderMov.loop();
+  earthMov = new Movie(this, "earth.mov");
+  mountainMov = new Movie(this, "mountain.mov");
+  heavenMov = new Movie(this, "heaven.mov");
+
+
 
   //load font
   PFont dinFont;
   dinFont = loadFont("DIN-Regular-48.vlw");
   textFont(dinFont);
   smooth();
-
-
   //String[] fontList = PFont.list();
   //printArray(fontList);
 
-  //load images
-  heavenImg = loadImage("heaven.jpg");
-  earthImg = loadImage("earth.jpg");
-  waterImg = loadImage("water.jpg");
-  mountainImg = loadImage("mountain.jpg");
-  thunderImg = loadImage("thunder.jpg");
 
   //create 64 hexagrams
   hex = new Hexagram[65];
   for (int i = 1; i < 65; i++) {
     hex[i++] = new Hexagram("tempName"+i, i, "tempMeaning"+i, "tempTri1"+i, "tempTri2"+i, "tempFortune"+i) ;
   }
-  
+
   hex[1] = new Hexagram("Ch'ien", 1, "The Creative", "Heaven", "Heaven", "The Creative works sublime success, Furthering through perseverance.");
   hex[2] = new Hexagram("K'un", 2, "The Receptive", "Earth", "Earth", "The Receptive brings about sublime success");
   hex[3] = new Hexagram("Chun", 3, "Difficulty at the Beginning", "Water", "Thunder", "Difficulty at the Beginning works supreme success, Furthering through perseverance. Nothing should be undertaken. It furthers one to appoint helpers.");
@@ -79,24 +70,33 @@ void draw() {
   for (int i = 0; i < hex.length; i++) {
     if (randNum == i ) {
       if (hex[i].trigram1 == "Heaven") {
-        image(thunderMov, 0, 0);
+        image(heavenMov, 0, 0);
+        heavenMov.play();
       } else if (hex[i].trigram1 == "Water") {
         image(waterMov, 0, 0);
+        waterMov.play();
       } else if (hex[i].trigram1 == "Earth") {
-        image(earthImg, 0, 0);
+        image(earthMov, 0, 0);
+        earthMov.play();
       } else if (hex[i].trigram1 == "Mountain") {
-        image(mountainImg, 0, 0);
-      } else {image(thunderImg,0,0);}
-      
+        image(mountainMov, 0, 0);
+        mountainMov.play();
+      } else {
+        image(thunderMov, 0, 0);
+        thunderMov.play();
+      }
+
       if (hex[i].trigram2 == "Heaven") {
-        image(thunderMov, width/2, 0);
+        image(heavenMov, width/2, 0);
       } else if (hex[i].trigram2 == "Water") {
         image(waterMov, width/2, 0);
       } else if (hex[i].trigram2 == "Earth") {
-        image(earthImg, width/2, 0);
+        image(earthMov, width/2, 0);
       } else if (hex[i].trigram2 == "Mountain") {
-        image(mountainImg, width/2, 0);
-      }else {image(thunderImg,width/2,0);}
+        image(mountainMov, width/2, 0);
+      } else {
+        image(thunderMov, width/2, 0);
+      }
 
       fill(0, 0, 0, 127);
       rect(0, 0, width, height);
@@ -113,9 +113,6 @@ void draw() {
     }
   };
   //println(hex[1].name);
-    
-    
-   
 }
 
 void movieEvent(Movie m) {
@@ -124,6 +121,12 @@ void movieEvent(Movie m) {
 
 void keyReleased()
 {
- if (key==' ') randNum = int(random(1, 7));;
+  if (key==' ') randNum = int(random(1, 7));
+  heavenMov.stop();
+  earthMov.stop();
+  waterMov.stop();
+  mountainMov.stop();
+  thunderMov.stop();
+  ;
 }
 
