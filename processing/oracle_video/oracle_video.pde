@@ -4,8 +4,8 @@ Movie waterMov;
 Movie thunderMov;
 Movie earthMov;
 Movie heavenMov;
+Movie heaven2Mov;
 Movie mountainMov;
-
 
 
 Hexagram[] hex;
@@ -21,6 +21,7 @@ void setup() {
   earthMov = new Movie(this, "earth.mov");
   mountainMov = new Movie(this, "mountain.mov");
   heavenMov = new Movie(this, "heaven.mov");
+  heaven2Mov = new Movie(this, "heaven2.mov");
 
 
 
@@ -66,67 +67,96 @@ class Hexagram {
 }
 
 void draw() {
+   float time = heavenMov.time();
+
+  
   //create a loop to draw trigrams and display hexagrams
   for (int i = 0; i < hex.length; i++) {
     if (randNum == i ) {
       if (hex[i].trigram1 == "Heaven") {
         image(heavenMov, 0, 0);
         heavenMov.play();
-      } else if (hex[i].trigram1 == "Water") {
-        image(waterMov, 0, 0);
-        waterMov.play();
-      } else if (hex[i].trigram1 == "Earth") {
-        image(earthMov, 0, 0);
-        earthMov.play();
-      } else if (hex[i].trigram1 == "Mountain") {
-        image(mountainMov, 0, 0);
-        mountainMov.play();
-      } else {
-        image(thunderMov, 0, 0);
-        thunderMov.play();
-      }
+        
+        
+        if (time == 10) {
+          if (hex[i].trigram2 == "Heaven") {
+            image(heaven2Mov, width/2, 0);
+            heaven2Mov.play();
+          } else if (hex[i].trigram2 == "Water") {
+            image(waterMov, width/2, 0);
+            waterMov.play();
+          } else if (hex[i].trigram2 == "Earth") {
+            image(earthMov, width/2, 0);
+            earthMov.play();
+          } else if (hex[i].trigram2 == "Mountain") {
+            image(mountainMov, width/2, 0);
+            mountainMov.play();
+          } else {
+            image(thunderMov, width/2, 0);
+            thunderMov.play();
+          };
+        }
+        } else if (hex[i].trigram1 == "Water") {
+          image(waterMov, 0, 0);
+          waterMov.play();
+        } else if (hex[i].trigram1 == "Earth") {
+          image(earthMov, 0, 0);
+          earthMov.play();
+        } else if (hex[i].trigram1 == "Mountain") {
+          image(mountainMov, 0, 0);
+          mountainMov.play();
+        } else {
+          image(thunderMov, 0, 0);
+          thunderMov.play();
+        }
 
-      if (hex[i].trigram2 == "Heaven") {
-        image(heavenMov, width/2, 0);
-      } else if (hex[i].trigram2 == "Water") {
-        image(waterMov, width/2, 0);
-      } else if (hex[i].trigram2 == "Earth") {
-        image(earthMov, width/2, 0);
-      } else if (hex[i].trigram2 == "Mountain") {
-        image(mountainMov, width/2, 0);
-      } else {
-        image(thunderMov, width/2, 0);
-      }
+        //      if (hex[i].trigram2 == "Heaven") {
+        //        image(heavenMov, width/2, 0);
+        //        heavenMov.play();
+        //      } else if (hex[i].trigram2 == "Water") {
+        //        image(waterMov, width/2, 0);
+        //        waterMov.play();
+        //      } else if (hex[i].trigram2 == "Earth") {
+        //        image(earthMov, width/2, 0);
+        //        earthMov.play();
+        //      } else if (hex[i].trigram2 == "Mountain") {
+        //        image(mountainMov, width/2, 0);
+        //        mountainMov.play();
+        //      } else {
+        //        image(thunderMov, width/2, 0);
+        //        thunderMov.play();
+        //      }
 
-      fill(0, 0, 0, 127);
-      rect(0, 0, width, height);
-      //fortune
-      textAlign(CENTER);
-      textSize(38);
-      fill(255);
-      text(hex[i].name + " — " + hex[i].meaning, width/2, height/2);
+        fill(0, 0, 0, 127);
+        rect(0, 0, width, height);
+        //fortune
+        textAlign(CENTER);
+        textSize(38);
+        fill(255);
+        text(hex[i].name + " — " + hex[i].meaning, width/2, height/2);
 
-      textSize(13);
-      text(hex[i].trigram1 + " / " + hex[i].trigram2, width/2, height/2 + 30);
+        textSize(13);
+        text(hex[i].trigram1 + " / " + hex[i].trigram2, width/2, height/2 + 30);
 
-      text(hex[i].fortune, 50, height/2 + 80, width - 100, height - 50);
-    }
-  };
-  //println(hex[1].name);
+        text(hex[i].fortune, 50, height/2 + 80, width - 100, height - 50);
+      
+    };
+    //println(hex[1].name);
+  }
 }
 
-void movieEvent(Movie m) {
-  m.read();
-}
+  void movieEvent(Movie m) {
+    m.read();
+  }
 
-void keyReleased()
-{
-  if (key==' ') randNum = int(random(1, 7));
-  heavenMov.stop();
-  earthMov.stop();
-  waterMov.stop();
-  mountainMov.stop();
-  thunderMov.stop();
-  ;
-}
+  void keyReleased()
+  {
+    if (key==' ') randNum = int(random(1, 7));
+    heavenMov.stop();
+    earthMov.stop();
+    waterMov.stop();
+    mountainMov.stop();
+    thunderMov.stop();
+    ;
+  }
 
