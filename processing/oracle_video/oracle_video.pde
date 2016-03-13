@@ -6,7 +6,8 @@ Movie earthMov;
 Movie heavenMov;
 Movie heaven2Mov;
 Movie mountainMov;
-
+  int time;
+int m;
 
 Hexagram[] hex;
 int randNum = int(random(1, 7));
@@ -15,6 +16,8 @@ void setup() {
   size(1200, 700);
   background(0);
 
+  imageMode(CENTER);
+
   //load movie
   waterMov = new Movie(this, "water.mov");
   thunderMov = new Movie(this, "thunder.mov");
@@ -22,7 +25,8 @@ void setup() {
   mountainMov = new Movie(this, "mountain.mov");
   heavenMov = new Movie(this, "heaven.mov");
   heaven2Mov = new Movie(this, "heaven2.mov");
-
+  
+  time=millis();
 
 
   //load font
@@ -66,97 +70,101 @@ class Hexagram {
   }
 }
 
-void draw() {
-   float time = heavenMov.time();
+//when hex[i] is chosen, play hex[i]trigram video 1, then play hex[i]trigram video 2, then show hex[i] fortune, then reset. 
 
-  
+
+void draw() {
+  m = millis() - time;
+  println("m " + m);
+
+
   //create a loop to draw trigrams and display hexagrams
   for (int i = 0; i < hex.length; i++) {
     if (randNum == i ) {
       if (hex[i].trigram1 == "Heaven") {
-        image(heavenMov, 0, 0);
+        image(heavenMov, width/2, height/2);
         heavenMov.play();
         
+      
         
-        if (time == 10) {
+
+
+        if (m > 10000) {
+          background(0);
           if (hex[i].trigram2 == "Heaven") {
-            image(heaven2Mov, width/2, 0);
+            image(heaven2Mov, width/2, height/2);
             heaven2Mov.play();
           } else if (hex[i].trigram2 == "Water") {
-            image(waterMov, width/2, 0);
+            image(waterMov, width/2, height/2);
             waterMov.play();
           } else if (hex[i].trigram2 == "Earth") {
-            image(earthMov, width/2, 0);
+            image(earthMov, width/2, height/2);
             earthMov.play();
           } else if (hex[i].trigram2 == "Mountain") {
-            image(mountainMov, width/2, 0);
+            image(mountainMov, width/2, height/2);
             mountainMov.play();
           } else {
-            image(thunderMov, width/2, 0);
+            image(thunderMov, width/2, height/2);
             thunderMov.play();
           };
         }
-        } else if (hex[i].trigram1 == "Water") {
-          image(waterMov, 0, 0);
-          waterMov.play();
-        } else if (hex[i].trigram1 == "Earth") {
-          image(earthMov, 0, 0);
-          earthMov.play();
-        } else if (hex[i].trigram1 == "Mountain") {
-          image(mountainMov, 0, 0);
-          mountainMov.play();
-        } else {
-          image(thunderMov, 0, 0);
-          thunderMov.play();
+        
+        
+        if (m > 20000) {
+
+          fill(0);
+          rect(0, 0, width, height);
+          //fortune
+          textAlign(CENTER);
+          textSize(38);
+          fill(255);
+          text(hex[i].name + " — " + hex[i].meaning, width/2, height/2);
+
+          textSize(13);
+          text(hex[i].trigram1 + " / " + hex[i].trigram2, width/2, height/2 + 30);
+
+          text(hex[i].fortune, 50, height/2 + 80, width - 100, height - 50);
         }
-
-        //      if (hex[i].trigram2 == "Heaven") {
-        //        image(heavenMov, width/2, 0);
-        //        heavenMov.play();
-        //      } else if (hex[i].trigram2 == "Water") {
-        //        image(waterMov, width/2, 0);
-        //        waterMov.play();
-        //      } else if (hex[i].trigram2 == "Earth") {
-        //        image(earthMov, width/2, 0);
-        //        earthMov.play();
-        //      } else if (hex[i].trigram2 == "Mountain") {
-        //        image(mountainMov, width/2, 0);
-        //        mountainMov.play();
-        //      } else {
-        //        image(thunderMov, width/2, 0);
-        //        thunderMov.play();
-        //      }
-
-        fill(0, 0, 0, 127);
-        rect(0, 0, width, height);
-        //fortune
-        textAlign(CENTER);
-        textSize(38);
-        fill(255);
-        text(hex[i].name + " — " + hex[i].meaning, width/2, height/2);
-
-        textSize(13);
-        text(hex[i].trigram1 + " / " + hex[i].trigram2, width/2, height/2 + 30);
-
-        text(hex[i].fortune, 50, height/2 + 80, width - 100, height - 50);
-      
+        
+        
+      } else if (hex[i].trigram1 == "Water") {
+        image(waterMov, width/2, height/2);
+        waterMov.play();
+      } else if (hex[i].trigram1 == "Earth") {
+        image(earthMov, width/2, height/2);
+        earthMov.play();
+      } else if (hex[i].trigram1 == "Mountain") {
+        image(mountainMov, width/2, height/2);
+        mountainMov.play();
+      } else {
+        image(thunderMov, width/2, height/2);
+        thunderMov.play();
+      }
     };
-    //println(hex[1].name);
   }
+
+  //println(hex[1].name);
 }
 
-  void movieEvent(Movie m) {
-    m.read();
-  }
+void movieEvent(Movie m) {
+  m.read();
+}
 
-  void keyReleased()
-  {
-    if (key==' ') randNum = int(random(1, 7));
-    heavenMov.stop();
-    earthMov.stop();
-    waterMov.stop();
-    mountainMov.stop();
-    thunderMov.stop();
-    ;
-  }
+void keyReleased()
+{
+  if (key==' ') 
+//  heavenMov.stop();
+//  earthMov.stop();
+//  waterMov.stop();
+//  mountainMov.stop();
+//  thunderMov.stop();
+//  float mil = millis();
+//
+//  println(mil);
+//  ;
+setup();
+randNum = int(random(1, 7));
+time = millis();
+println(millis());
+}
 
