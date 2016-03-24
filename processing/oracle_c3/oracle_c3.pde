@@ -10,6 +10,13 @@ Movie heavenMov;
 Movie heaven2Mov;
 Movie mountainMov;
 Movie mountain2Mov;
+Movie windMov;
+Movie wind2Mov;
+Movie lakeMov;
+Movie lake2Mov;
+Movie fireMov;
+Movie fire2Mov;
+
 Movie mov1;
 Movie mov2;
 Movie mov3;
@@ -17,21 +24,35 @@ Movie mov4;
 Movie mov5;
 Movie mov6;
 Movie mov7;
+Movie mov8;
+Movie mov9;
+Movie mov10;
+Movie mov11;
+Movie mov12;
+Movie mov13;
+Movie mov14;
+Movie mov15;
+Movie mov16;
+Movie mov17;
+Movie mov18;
+Movie mov19;
+Movie mov20;
 
 
 
-
-
+// set timing
 int time;
 int m;
 
- 
+//hexagram array
 Hexagram[] hex;
+
+//random number
 int randNum = int(random(1, 7));
 
 void setup() {
-  fullScreen();
-  //size(1400, 900);
+  //fullScreen();
+  size(1200, 700);
   background(0);
 
   imageMode(CENTER);
@@ -54,33 +75,37 @@ void setup() {
   mov5 = new Movie(this, "5.mp4");
   mov6 = new Movie(this, "6.mp4");
   mov7 = new Movie(this, "7.mp4");
-  
-
+  mov8 = new Movie(this, "8.mp4");
+  mov9 = new Movie(this, "9.mp4");
+  mov10 = new Movie(this, "10.mp4");
+  mov11 = new Movie(this, "11.mp4");
+  mov12 = new Movie(this, "12.mp4");
+  mov13 = new Movie(this, "13.mp4");
+  mov14 = new Movie(this, "14.mp4");
+  mov15 = new Movie(this, "15.mp4");
+  mov16 = new Movie(this, "16.mp4");
+  mov17 = new Movie(this, "17.mp4");
+  mov18 = new Movie(this, "18.mp4");
+  mov19 = new Movie(this, "19.mp4");
+  mov20 = new Movie(this, "20.mp4");
 
   time=millis();
 
-
-  //load font
-  PFont dinFont;
-  dinFont = loadFont("DIN-Regular-48.vlw");
-  textFont(dinFont);
-  smooth();
-  //String[] fontList = PFont.list();
-  //printArray(fontList);
-
-
   //create 64 hexagrams
   hex = new Hexagram[65];
-  //for (int i = 1; i < 65; i++) {
-  //  hex[i++] = new Hexagram("tempName"+i, i, "tempMeaning"+i, "tempTri1"+i, "tempTri2"+i, fortune) ;
-  //}
 
-  hex[1] = new Hexagram("Ch'ien", 1, "The Creative", "Heaven", "Heaven", mov1);
-  hex[2] = new Hexagram("K'un", 2, "The Receptive", "Earth", "Earth", mov2);
-  //hex[3] = new Hexagram("Chun", 3, "Difficulty at the Beginning", "Water", mov3);
-  hex[4] = new Hexagram("Meng", 4, "Youthful Folly", "Mountain", "Water", mov4);
-  hex[5] = new Hexagram("Hsu", 5, "Waiting (Nourishment)", "Water", "Heaven", mov5);
-  hex[6] = new Hexagram("Sung", 6, "Conflict", "Heaven", "Water", mov6);
+  hex[1] = new Hexagram("The Creative", "Heaven", "Heaven", mov1);
+  hex[2] = new Hexagram("The Receptive", "Earth", "Earth", mov2);
+  hex[3] = new Hexagram("Difficulty at the Beginning", "Water", "Thunder", mov3);
+  hex[4] = new Hexagram("Youthful Folly", "Mountain", "Water", mov4);
+  hex[5] = new Hexagram("Waiting (Nourishment)", "Water", "Heaven", mov5);
+  hex[6] = new Hexagram("Conflict", "Heaven", "Water", mov6);
+  hex[7] = new Hexagram("The Army", "Earth", "Water", mov7);
+  hex[8] = new Hexagram("The Taming Power of the Small", "Wind", "Heaven", mov8);
+  hex[9] = new Hexagram("Conflict", "Heaven", "Water", mov9);
+  hex[10] = new Hexagram("Conflict", "Heaven", "Water", mov10);
+
+
 }
 
 
@@ -95,6 +120,8 @@ void draw() {
   //create a loop to draw trigrams and display hexagrams
   for (int i = 0; i < hex.length; i++) {
     if (randNum == i ) {
+      println(hex[i].trigram1, hex[i].trigram2, hex[i].meaning);
+      
       if (hex[i].trigram1 == "Heaven") {
         image(heavenMov, width/2, height/2);
         heavenMov.play();
@@ -218,7 +245,10 @@ void draw() {
         
       }
       //show fortune }
-      
+      if (m > 78000) {
+        image(hex[i].fortune, width/2, height/2);
+        hex[i].fortune.play();
+      }
     };
   }
 
