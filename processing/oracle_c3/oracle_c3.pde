@@ -48,7 +48,9 @@ int m;
 Hexagram[] hex;
 
 //random number
-int randNum = int(random(1, 7));
+//int randNum = int(random(1, 7));
+int randNum = int(random(1,20));
+
 
 void setup() {
   //fullScreen();
@@ -68,6 +70,14 @@ void setup() {
   mountain2Mov = new Movie(this, "mountain copy.mp4");
   heavenMov = new Movie(this, "heaven.mp4");
   heaven2Mov = new Movie(this, "heaven copy.mp4");
+  windMov = new Movie(this, "wind.mp4");
+  wind2Mov = new Movie(this, "wind copy.mp4");
+  fireMov = new Movie(this, "fire.mp4");
+  fire2Mov = new Movie(this, "fire copy.mp4");
+  lakeMov = new Movie(this, "lake.mp4");
+  lake2Mov = new Movie(this, "lake copy.mp4");
+
+
   mov1 = new Movie(this, "1.mp4");
   mov2 = new Movie(this, "2.mp4");
   mov3 = new Movie(this, "3.mp4");
@@ -101,15 +111,20 @@ void setup() {
   hex[5] = new Hexagram("Waiting (Nourishment)", "Water", "Heaven", mov5);
   hex[6] = new Hexagram("Conflict", "Heaven", "Water", mov6);
   hex[7] = new Hexagram("The Army", "Earth", "Water", mov7);
-  hex[8] = new Hexagram("The Taming Power of the Small", "Wind", "Heaven", mov8);
-  hex[9] = new Hexagram("Conflict", "Heaven", "Water", mov9);
-  hex[10] = new Hexagram("Conflict", "Heaven", "Water", mov10);
-
-
+  hex[8] = new Hexagram("Holding Together", "Water", "Earth", mov8);
+  hex[9] = new Hexagram("The Taming Power of the Small", "Wind", "Heaven", mov9);
+  hex[10] = new Hexagram("Treading", "Heaven ", "Lake", mov10);
+  hex[11] = new Hexagram("Peace", "Earth", "Heaven", mov11);
+  hex[12] = new Hexagram("Standstill", "Heaven", "Earth", mov12);
+  hex[13] = new Hexagram("Fellowship with Men", "Heaven ", "Flame", mov13);
+  hex[14] = new Hexagram("Possession in Great Measure", "Flame", "Heaven", mov14);
+  hex[15] = new Hexagram("Modesty", "Earth", "Mountain", mov15);
+  hex[16] = new Hexagram("Enthusiasm", "Thunder", "Earth", mov16);
+  hex[17] = new Hexagram("Following", "Lake", "Thunder", mov17);
+  hex[18] = new Hexagram("Work on what has been spoiled", "Mountain", "Wind", mov18);
+  hex[19] = new Hexagram("Approach", "Earth", "Lake", mov19);
+  hex[20] = new Hexagram("Contemplation", "Wind", "Earth", mov20);
 }
-
-
-
 
 
 void draw() {
@@ -120,14 +135,14 @@ void draw() {
   //create a loop to draw trigrams and display hexagrams
   for (int i = 0; i < hex.length; i++) {
     if (randNum == i ) {
-      println(hex[i].trigram1, hex[i].trigram2, hex[i].meaning);
-      
+      println(randNum, hex[i].trigram1, hex[i].trigram2, hex[i].meaning);
+
       if (hex[i].trigram1 == "Heaven") {
         image(heavenMov, width/2, height/2);
         heavenMov.play();
+
         //play trigram 2
         if (m > 38000) {
-          background(0);
           if (hex[i].trigram2 == "Heaven") {
             image(heaven2Mov, width/2, height/2);
             heaven2Mov.play();
@@ -140,13 +155,20 @@ void draw() {
           } else if (hex[i].trigram2 == "Mountain") {
             image(mountain2Mov, width/2, height/2);
             mountain2Mov.play();
+          } else if (hex[i].trigram2 == "Lake") {
+            image(lake2Mov, width/2, height/2);
+            lake2Mov.play();
+          } else if (hex[i].trigram2 == "Fire") {
+            image(fire2Mov, width/2, height/2);
+            fire2Mov.play();
+          } else if (hex[i].trigram2 == "Wind") {
+            image(wind2Mov, width/2, height/2);
+            wind2Mov.play();
           } else {
             image(thunder2Mov, width/2, height/2);
             thunder2Mov.play();
           };
         }
-
-
       } else if (hex[i].trigram1 == "Water") {
         image(waterMov, width/2, height/2);
         waterMov.play();
@@ -165,12 +187,20 @@ void draw() {
           } else if (hex[i].trigram2 == "Mountain") {
             image(mountain2Mov, width/2, height/2);
             mountain2Mov.play();
+          } else if (hex[i].trigram2 == "Lake") {
+            image(lake2Mov, width/2, height/2);
+            lake2Mov.play();
+          } else if (hex[i].trigram2 == "Fire") {
+            image(fire2Mov, width/2, height/2);
+            fire2Mov.play();
+          } else if (hex[i].trigram2 == "Wind") {
+            image(wind2Mov, width/2, height/2);
+            wind2Mov.play();
           } else {
             image(thunder2Mov, width/2, height/2);
             thunder2Mov.play();
           };
         }
-        
       } else if (hex[i].trigram1 == "Earth") {
         image(earthMov, width/2, height/2);
         earthMov.play();
@@ -189,12 +219,20 @@ void draw() {
           } else if (hex[i].trigram2 == "Mountain") {
             image(mountain2Mov, width/2, height/2);
             mountain2Mov.play();
+          } else if (hex[i].trigram2 == "Lake") {
+            image(lake2Mov, width/2, height/2);
+            lake2Mov.play();
+          } else if (hex[i].trigram2 == "Fire") {
+            image(fire2Mov, width/2, height/2);
+            fire2Mov.play();
+          } else if (hex[i].trigram2 == "Wind") {
+            image(wind2Mov, width/2, height/2);
+            wind2Mov.play();
           } else {
             image(thunder2Mov, width/2, height/2);
             thunder2Mov.play();
           };
         }
-        
       } else if (hex[i].trigram1 == "Mountain") {
         image(mountainMov, width/2, height/2);
         mountainMov.play();
@@ -213,12 +251,116 @@ void draw() {
           } else if (hex[i].trigram2 == "Mountain") {
             image(mountain2Mov, width/2, height/2);
             mountain2Mov.play();
+          } else if (hex[i].trigram2 == "Lake") {
+            image(lake2Mov, width/2, height/2);
+            lake2Mov.play();
+          } else if (hex[i].trigram2 == "Fire") {
+            image(fire2Mov, width/2, height/2);
+            fire2Mov.play();
+          } else if (hex[i].trigram2 == "Wind") {
+            image(wind2Mov, width/2, height/2);
+            wind2Mov.play();
           } else {
             image(thunder2Mov, width/2, height/2);
             thunder2Mov.play();
           };
         }
-        
+      } else if (hex[i].trigram1 == "Lake") {
+        image(lakeMov, width/2, height/2);
+        lakeMov.play();
+        //play trigram 2
+        if (m > 38000) {
+          background(0);
+          if (hex[i].trigram2 == "Heaven") {
+            image(heaven2Mov, width/2, height/2);
+            heaven2Mov.play();
+          } else if (hex[i].trigram2 == "Water") {
+            image(water2Mov, width/2, height/2);
+            water2Mov.play();
+          } else if (hex[i].trigram2 == "Earth") {
+            image(earth2Mov, width/2, height/2);
+            earth2Mov.play();
+          } else if (hex[i].trigram2 == "Mountain") {
+            image(mountain2Mov, width/2, height/2);
+            mountain2Mov.play();
+          } else if (hex[i].trigram2 == "Lake") {
+            image(lake2Mov, width/2, height/2);
+            lake2Mov.play();
+          } else if (hex[i].trigram2 == "Fire") {
+            image(fire2Mov, width/2, height/2);
+            fire2Mov.play();
+          } else if (hex[i].trigram2 == "Wind") {
+            image(wind2Mov, width/2, height/2);
+            wind2Mov.play();
+          } else {
+            image(thunder2Mov, width/2, height/2);
+            thunder2Mov.play();
+          };
+        }
+        } else if (hex[i].trigram1 == "Fire") {
+        image(fireMov, width/2, height/2);
+        fireMov.play();
+        //play trigram 2
+        if (m > 38000) {
+          background(0);
+          if (hex[i].trigram2 == "Heaven") {
+            image(heaven2Mov, width/2, height/2);
+            heaven2Mov.play();
+          } else if (hex[i].trigram2 == "Water") {
+            image(water2Mov, width/2, height/2);
+            water2Mov.play();
+          } else if (hex[i].trigram2 == "Earth") {
+            image(earth2Mov, width/2, height/2);
+            earth2Mov.play();
+          } else if (hex[i].trigram2 == "Mountain") {
+            image(mountain2Mov, width/2, height/2);
+            mountain2Mov.play();
+          } else if (hex[i].trigram2 == "Lake") {
+            image(lake2Mov, width/2, height/2);
+            lake2Mov.play();
+          } else if (hex[i].trigram2 == "Fire") {
+            image(fire2Mov, width/2, height/2);
+            fire2Mov.play();
+          } else if (hex[i].trigram2 == "Wind") {
+            image(wind2Mov, width/2, height/2);
+            wind2Mov.play();
+          } else {
+            image(thunder2Mov, width/2, height/2);
+            thunder2Mov.play();
+          };
+        }
+        } else if (hex[i].trigram1 == "Wind") {
+        image(windMov, width/2, height/2);
+        windMov.play();
+        //play trigram 2
+        if (m > 38000) {
+          background(0);
+          if (hex[i].trigram2 == "Heaven") {
+            image(heaven2Mov, width/2, height/2);
+            heaven2Mov.play();
+          } else if (hex[i].trigram2 == "Water") {
+            image(water2Mov, width/2, height/2);
+            water2Mov.play();
+          } else if (hex[i].trigram2 == "Earth") {
+            image(earth2Mov, width/2, height/2);
+            earth2Mov.play();
+          } else if (hex[i].trigram2 == "Mountain") {
+            image(mountain2Mov, width/2, height/2);
+            mountain2Mov.play();
+          } else if (hex[i].trigram2 == "Lake") {
+            image(lake2Mov, width/2, height/2);
+            lake2Mov.play();
+          } else if (hex[i].trigram2 == "Fire") {
+            image(fire2Mov, width/2, height/2);
+            fire2Mov.play();
+          } else if (hex[i].trigram2 == "Wind") {
+            image(wind2Mov, width/2, height/2);
+            wind2Mov.play();
+          } else {
+            image(thunder2Mov, width/2, height/2);
+            thunder2Mov.play();
+          };
+        }
       } else {
         image(thunderMov, width/2, height/2);
         thunderMov.play();
@@ -237,12 +379,20 @@ void draw() {
           } else if (hex[i].trigram2 == "Mountain") {
             image(mountain2Mov, width/2, height/2);
             mountain2Mov.play();
+          } else if (hex[i].trigram2 == "Lake") {
+            image(lake2Mov, width/2, height/2);
+            lake2Mov.play();
+          } else if (hex[i].trigram2 == "Fire") {
+            image(fire2Mov, width/2, height/2);
+            fire2Mov.play();
+          } else if (hex[i].trigram2 == "Wind") {
+            image(wind2Mov, width/2, height/2);
+            wind2Mov.play();
           } else {
             image(thunder2Mov, width/2, height/2);
             thunder2Mov.play();
           };
         }
-        
       }
       //show fortune }
       if (m > 78000) {
@@ -272,7 +422,7 @@ void keyReleased()
     //  println(mil);
     //  ;
     setup();
-  randNum = int(random(1, 7));
+  randNum = int(random(1, 20));
   time = millis();
- // println(millis());
+  // println(millis());
 }

@@ -4,7 +4,7 @@ class Hexagram {
   String trigram2;
   Movie fortune;
 
-  Hexagram(String tempMeaning, String tempTrigram1, String tempTrigram2, Movie tempFortune) {
+  Hexagram(String tempMeaning, String tempTrigram2, String tempTrigram1, Movie tempFortune) {
     meaning = tempMeaning;
     trigram1 = tempTrigram1;
     trigram2 = tempTrigram2;
