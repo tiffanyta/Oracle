@@ -1,4 +1,4 @@
-//importing piezo-test2 for oracle project
+//importing piezoSend for oracle project
 
 import processing.serial.*;
 
@@ -13,7 +13,7 @@ void setup()
   size(200, 200);
 
   // Open your serial port
-  port = new Serial(this, "/dev/cu.usbmodem411", 9600);  // <-- SUBSTITUTE COMXX with your serial port name!!
+  port = new Serial(this, "/dev/cu.usbmodem641", 9600);  // <-- SUBSTITUTE COMXX with your serial port name!!
 }
 
 void draw()

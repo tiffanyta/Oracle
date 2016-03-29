@@ -97,8 +97,8 @@ int randNum = int(random(1, 64));
 
 
 void setup() {
-  //fullScreen();
-  size(700, 400);
+  fullScreen();
+  //size(700, 400);
   background(0);
 
   imageMode(CENTER);
@@ -264,7 +264,7 @@ void setup() {
 void draw() {
   m = millis() - time;
   //println("m " + m);
-
+  println(frameRate);
   //when hex[i] is chosen, play hex[i]trigram video 1, then play hex[i]trigram video 2, then show hex[i] fortune, then reset. 
   //create a loop to draw trigrams and display hexagrams
   for (int i = 0; i < hex.length; i++) {
